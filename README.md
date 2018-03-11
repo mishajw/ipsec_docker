@@ -13,12 +13,7 @@ You can run this project by running:
 ```bash
 openssl req \
   -nodes -x509 -newkey rsa:4096 \
-  -keyout moon_key.pem -out moon_cert.pem \
-  -days 365
-
-openssl req \
-  -nodes -x509 -newkey rsa:4096 \
-  -keyout sun_key.pem -out sun_cert.pem \
+  -keyout key.pem -out cert.pem \
   -days 365
 
 docker-compose up --build
@@ -36,6 +31,8 @@ You will not be able to see the `"testing IPsec"` message in the `tcpdump` outpu
 ## Notes
 
 Setting up the `ipsec.conf` was not too difficult. I simply started with the configuration shown to us in the lectures, stripped specifics such as IPs from the configuration, and added the two `conn` entries. The ciphers from the lecture slides were strong enough, so they were left as is.
+
+Unfortunately, I didn't have time to set up proper CA signed keys, and had to use identical self-signed keys for both containers.
 
 This was a fun assignment to do in docker, and I ran into surprisingly few issues along the way. Setting up two separate containers from a single `Dockerfile` was interesting, and not as painful as I expected. Unfortunately I didn't have enough time to write tests for the configuration!
 
