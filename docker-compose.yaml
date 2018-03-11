@@ -1,0 +1,26 @@
+version: "2.2"
+
+services:
+  sun:
+    tty: true
+    build: .
+    networks:
+      default_net:
+        ipv4_address: 192.168.100.2
+    privileged: true
+  moon:
+    tty: true
+    build: .
+    networks:
+      default_net:
+        ipv4_address: 192.168.100.3
+    privileged: true
+
+networks:
+  default_net:
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+          ip_range: 192.168.100.0/24
+          gateway: 192.168.100.1
+
